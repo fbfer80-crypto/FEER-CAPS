@@ -36,6 +36,7 @@ quantity: 1
 }
 
 actualizarCarritoHTML();
+toggleCart();
 }
 
 function actualizarCarritoHTML() {

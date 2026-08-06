@@ -1,127 +1,220 @@
 * {
-box-sizing: border-box;
 margin: 0;
 padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Fondo Negro Profundo, Texto Blanco */
 body {
-font-family: 'Helvetica Neue', Arial, sans-serif;
-background-color: #0a0a0a;
+background-color: #000000;
 color: #ffffff;
 }
 
+/* Header / Barra de Navegación */
 header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 20px 5%;
-background: #000000;
-border-bottom: 2px solid #e50914; /* Línea roja elegante */
+padding: 15px 8%;
+background: rgba(0, 0, 0, 0.85);
+backdrop-filter: blur(10px);
+position: sticky;
+top: 0;
+z-index: 100;
+border-bottom: 2px solid #ff0000;
 }
 
 .logo {
 font-size: 1.8rem;
 font-weight: 900;
-letter-spacing: 2px;
-color: #ffffff;
+letter-spacing: 1.5px;
+color: #ffffff; /* FEER en blanco */
 }
 
+/* CAPS en Rojo */
 .logo span {
-color: #e50914; /* Rojo para CAPS */
+color: #ff0000;
 }
 
 nav a {
 color: #ffffff;
 text-decoration: none;
-font-weight: bold;
-transition: color 0.3s;
+margin-left: 20px;
+font-weight: 600;
+transition: color 0.3s ease;
 }
 
 nav a:hover {
-color: #e50914;
+color: #ff0000;
 }
 
+/* Estilo para Instagram en Nav */
+.nav-social-ig {
+color: #ff0000;
+}
+.nav-social-ig:hover {
+color: #ffffff;
+}
+
+/* Hero Section */
 .hero {
 text-align: center;
-padding: 60px 20px;
-background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
-border-bottom: 1px solid #1a1a1a;
+padding: 80px 20px;
+background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, rgba(0,0,0,1) 80%);
 }
 
 .hero h1 {
-font-size: 2.8rem;
-margin-bottom: 10px;
-letter-spacing: 2px;
-text-transform: uppercase;
+font-size: 2.5rem;
+margin-bottom: 15px;
+font-weight: 800;
 }
 
 .hero p {
-color: #aaaaaa;
-font-size: 1.1rem;
+color: #cccccc;
+font-size: 1.15rem;
+line-height: 1.7;
+margin-bottom: 30px;
 }
 
+/* Botón Principal Hero en Rojo */
+.btn-hero {
+display: inline-block;
+background-color: #ff0000;
+color: #ffffff;
+padding: 16px 32px;
+border-radius: 35px;
+text-decoration: none;
+font-weight: bold;
+font-size: 1.05rem;
+transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-hero:hover {
+background-color: #cc0000;
+transform: translateY(-4px) scale(1.02);
+}
+
+/* Grid de Productos */
 .grid-productos {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 30px;
-padding: 50px 5%;
-max-width: 1200px;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 35px;
+padding: 50px 8%;
+max-width: 1300px;
 margin: 0 auto;
 }
 
-.card {
-background: #141414;
-border-radius: 12px;
-padding: 20px;
-text-align: center;
+.card-producto {
+background-color: #111111;
+border-radius: 18px;
+overflow: hidden;
 border: 1px solid #222222;
-transition: transform 0.3s ease, border-color 0.3s ease;
+transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.card:hover {
-transform: translateY(-5px);
-border-color: #e50914; /* Borde rojo al pasar el cursor */
+/* Hover de tarjeta con luz roja y elevación */
+.card-producto:hover {
+transform: translateY(-10px);
+box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.25);
+border-color: #ff0000;
 }
 
-.card img {
+.img-container {
 width: 100%;
-height: 250px;
+height: 300px;
+overflow: hidden;
+}
+
+.img-container img {
+width: 100%;
+height: 100%;
 object-fit: cover;
-border-radius: 8px;
-margin-bottom: 15px;
+transition: transform 0.5s ease;
 }
 
-.card h3 {
-font-size: 1.2rem;
-margin-bottom: 8px;
+.card-producto:hover .img-container img {
+transform: scale(1.1);
 }
 
+.info-producto {
+padding: 25px;
+text-align: center;
+}
+
+.info-producto h3 {
+font-size: 1.3rem;
+margin-bottom: 10px;
+font-weight: 700;
+}
+
+/* Precio en Rojo */
 .precio {
-font-size: 1.2rem;
-font-weight: bold;
-color: #e50914; /* Precio en rojo */
-margin-bottom: 15px;
+color: #ff0000;
+font-weight: 800;
+font-size: 1.4rem;
+margin-bottom: 20px;
 }
 
-.btn-comprar {
+/* Botón Pedir por WhatsApp */
+.btn-wsp {
 display: block;
-background: #25d366; /* Verde de WhatsApp para generar confianza */
+background-color: #25d366;
 color: #ffffff;
-padding: 12px;
 text-decoration: none;
-border-radius: 6px;
-font-weight: bold;
-transition: background 0.3s;
+padding: 12px;
+border-radius: 10px;
+font-weight: 700;
+transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-comprar:hover {
-background: #1ebc57;
+.btn-wsp:hover {
+background-color: #1eb857;
+transform: scale(1.03);
 }
 
+/* Pie de Página / Footer */
 footer {
 text-align: center;
-padding: 25px;
-border-top: 1px solid #1a1a1a;
-color: #555555;
-font-size: 0.9rem;
+padding: 40px;
+border-top: 2px solid #ff0000;
+color: #999999;
+font-size: 0.95rem;
+background-color: #0a0a0a;
+}
+
+.social-links {
+margin-top: 15px;
+}
+
+.footer-ig {
+color: #ff0000;
+text-decoration: none;
+font-weight: 700;
+transition: color 0.3s ease;
+}
+
+.footer-ig:hover {
+color: #ffffff;
+}
+
+/* Animación Pulse en Rojo */
+.pulse-red {
+animation: pulse-red-animation 2.5s infinite;
+}
+
+@keyframes pulse-red-animation {
+0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+70% { box-shadow: 0 0 0 18px rgba(255, 0, 0, 0); }
+100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+/* Animación Fade In */
+.fade-in {
+animation: fadeIn 1.2s ease-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(-15px); }
+to { opacity: 1; transform: translateY(0); }
 }

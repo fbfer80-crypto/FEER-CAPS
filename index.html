@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="styles.css">
 <!-- Iconos de FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Librería jsPDF para generar facturas en PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -401,12 +403,15 @@
 <span>Total:</span>
 <span id="cart-total">$0.00</span>
 </div>
+<!-- Nota agregada -->
+<p style="font-size: 0.75rem; color: #aaa; text-align: center; margin: 8px 0;">📸 No olvides tomar captura de pantalla a tu carrito para ver tus modelos.</p>
 <button class="btn-checkout" onclick="sendOrderWhatsApp()">
 <i class="fa-brands fa-whatsapp"></i> Pedir Carrito por WhatsApp
 </button>
 </div>
 </div>
 </div>
+
 
 <!-- Footer -->
 <footer>

@@ -1,4 +1,3 @@
-
 let cart = [];
 
 function agregarAlCarrito(button) {
@@ -92,17 +91,60 @@ alert("Tu carrito está vacío");
 return;
 }
 
-let mensaje = "Hola! Deseo realizar el siguiente pedido en FEER CAPS:%0A%0A";
+// 1. GENERAR Y DESCARGAR EL PDF (FACTURA DIGITAL)
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(20);
+doc.text("FEER CAPS", 105, 20, { align: "center" });
+
+doc.setFontSize(12);
+doc.setFont("helvetica", "normal");
+doc.text("Nota de Pedido / Factura Digital", 105, 28, { align: "center" });
+doc.text("Guayaquil, Ecuador", 105, 34, { align: "center" });
+
+doc.line(20, 40, 190, 40);
+
+let y = 50;
+doc.setFont("helvetica", "bold");
+doc.text("Producto", 20, y);
+doc.text("Talla", 120, y);
+doc.text("Cant", 150, y);
+doc.text("Subtotal", 170, y);
+
+y += 8;
+doc.setFont("helvetica", "normal");
 let total = 0;
 
 cart.forEach(item => {
 let subtotal = item.price * item.quantity;
 total += subtotal;
-mensaje += `- ${item.name} (Talla: ${item.talla}) x${item.quantity} - $${subtotal.toFixed(2)}%0A`;
+
+doc.text(item.name, 20, y);
+doc.text(String(item.talla), 120, y);
+doc.text(String(item.quantity), 150, y);
+doc.text("$" + subtotal.toFixed(2), 170, y);
+
+y += 8;
 });
 
-mensaje += `%0ATotal a pagar: $${total.toFixed(2)}`;
+doc.line(20, y + 2, 190, y + 2);
 
-window.open(`https://wa.me/593999226667?text=${mensaje}`, '_blank');
+y += 10;
+doc.setFont("helvetica", "bold");
+doc.setFontSize(14);
+doc.text("TOTAL A PAGAR: $" + total.toFixed(2), 170, y, { align: "right" });
+
+y += 20;
+doc.setFontSize(10);
+doc.setFont("helvetica", "italic");
+doc.text("¡Gracias por tu compra en FEER CAPS!", 105, y, { align: "center" });
+
+doc.save("Factura_FeerCaps.pdf");
+
+// 2. ABRIR WHATSAPP CON EL MENSAJE
+let mensaje = "Hola! Acabo de generar mi factura en PDF de FEER CAPS. Deseo confirmar mi pedido por un total de $" + total.toFixed(2);
+window.open(`https://wa.me/593999226667?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 

@@ -480,3 +480,33 @@ padding: 15px 8%;
 }
 }
 
+/* Forzar 2 productos por fila en celulares */
+@media (max-width: 768px) {
+.grid-productos {
+display: grid !important;
+grid-template-columns: repeat(2, 1fr) !important;
+gap: 10px !important;
+}
+
+.img-container {
+height: 150px !important;
+}
+
+.info-producto {
+padding: 10px 6px !important;
+}
+
+.info-producto h3 {
+font-size: 0.8rem !important;
+}
+
+.precio {
+font-size: 0.95rem !important;
+margin-bottom: 6px !important;
+}
+
+.btn-add-cart {
+padding: 6px 2px !important;
+font-size: 0.7rem !important;
+}
+}

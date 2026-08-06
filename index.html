@@ -10,21 +10,32 @@
 </head>
 <body>
 
-<!-- Encabezado / Navbar -->
+<!-- Encabezado / Navbar con Menú Hamburguesa (3 rayitas) -->
 <header>
 <div class="logo-container">
 <img src="img/logo.png" alt="FEER CAPS Logo" class="logo-img">
 <div class="logo">FEER<span>CAPS</span></div>
 </div>
-<nav>
-<a href="#catalogo">Catálogo</a>
+
+<!-- Navegación para PC y Botón Menú para Celular -->
+<nav class="navbar">
+<div class="nav-links" id="navLinks">
+<a href="#belicas" onclick="toggleMenu()">🔥 Bélicas</a>
+<a href="#fifty" onclick="toggleMenu()">⚡ 59FIFTY</a>
+<a href="#snapback" onclick="toggleMenu()">🧢 Snapback</a>
 <a href="https://instagram.com/FeerCaps.ec" target="_blank" class="nav-social-ig">
 <i class="fa-brands fa-instagram"></i> @FeerCaps.ec
 </a>
-<!-- Botón flotante del Carrito en el Menú -->
+</div>
+
 <button class="cart-btn" onclick="toggleCart()">
 <i class="fa-solid fa-cart-shopping"></i>
 <span id="cart-count">0</span>
+</button>
+
+<!-- Botón de las 3 Rayitas -->
+<button class="menu-toggle" onclick="toggleMenu()">
+<i class="fa-solid fa-bars"></i>
 </button>
 </nav>
 </header>
@@ -45,12 +56,34 @@
 </div>
 </section>
 
-<!-- Catálogo de Productos -->
-<main id="catalogo" class="grid-productos">
+<!-- Barra de Confianza / Insignias -->
+<div class="trust-badges">
+<div class="badge-item">
+<i class="fa-solid fa-truck-fast"></i>
+<span>Envíos a todo el Ecuador 🇪🇨</span>
+</div>
+<div class="badge-item">
+<i class="fa-solid fa-location-dot"></i>
+<span>Entregas presenciales en Guayaquil 📍</span>
+</div>
+<div class="badge-item">
+<i class="fa-solid fa-shield-halved"></i>
+<span>Compra 100% Segura 💎</span>
+</div>
+</div>
+
+<!-- Catálogo Dividido por Categorías -->
+<main id="catalogo" class="catalogo-container">
+
+<!-- SECCIÓN 1: GORRAS BÉLICAS -->
+<section id="belicas" class="categoria-section">
+<h2 class="titulo-categoria">🔥 GORRAS BÉLICAS</h2>
+<div class="grid-productos">
 
 <!-- Producto 1: RUDE MARCA -->
 <div class="card-producto fade-up">
 <div class="img-container">
+<span class="product-tag">EXCLUSIVO 🔥</span>
 <img src="img/gorra1.jpg" alt="RUDE MARCA">
 </div>
 <div class="info-producto">
@@ -62,9 +95,18 @@
 </div>
 </div>
 
+</div>
+</section>
+
+<!-- SECCIÓN 2: NEW ERA 59FIFTY -->
+<section id="fifty" class="categoria-section">
+<h2 class="titulo-categoria">⚡ NEW ERA 59FIFTY (Cerradas)</h2>
+<div class="grid-productos">
+
 <!-- Producto 2: LA Chrome Blue -->
 <div class="card-producto fade-up">
 <div class="img-container">
+<span class="product-tag tag-blue">TOP VENTAS ⭐</span>
 <img src="img/gorra2.jpg" alt="LA Chrome Blue">
 </div>
 <div class="info-producto">
@@ -76,9 +118,21 @@
 </div>
 </div>
 
+</div>
+</section>
+
+<!-- SECCIÓN 3: NEW ERA SNAPBACK -->
+<section id="snapback" class="categoria-section">
+<h2 class="titulo-categoria">🧢 NEW ERA SNAPBACK (Ajustables)</h2>
+<div class="grid-productos">
+<!-- Aquí puedes agregar tus próximas gorras snapback luego -->
+<p class="empty-msg" style="grid-column: 1 / -1; padding: 20px;">Próximamente más modelos disponibles...</p>
+</div>
+</section>
+
 </main>
 
-<!-- Modal / Ventana del Carrito de Compras -->
+<!-- Modal del Carrito -->
 <div id="cart-modal" class="cart-modal">
 <div class="cart-content">
 <div class="cart-header">
@@ -100,7 +154,7 @@
 </div>
 </div>
 
-<!-- Pie de página / Footer -->
+<!-- Footer -->
 <footer>
 <p>© 2026 FEER CAPS - Guayaquil, Ecuador</p>
 <div class="social-links">
@@ -110,9 +164,15 @@
 </div>
 </footer>
 
-<!-- Lógica JavaScript del Carrito -->
+<!-- Scripts -->
 <script>
 let cart = [];
+
+// Función para abrir/cerrar el menú de las 3 rayitas
+function toggleMenu() {
+const navLinks = document.getElementById('navLinks');
+navLinks.classList.toggle('active');
+}
 
 function toggleCart() {
 const modal = document.getElementById('cart-modal');

@@ -3,12 +3,13 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+scroll-behavior: smooth;
 }
 
 body {
 background-color: #000000;
 color: #ffffff;
-overflow-x: hidden; /* Evita el scroll horizontal en móviles */
+overflow-x: hidden;
 }
 
 /* Header / Navbar */
@@ -17,7 +18,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 12px 5%;
-background: rgba(0, 0, 0, 0.95);
+background: rgba(0, 0, 0, 0.98);
 backdrop-filter: blur(10px);
 position: sticky;
 top: 0;
@@ -53,13 +54,19 @@ color: #ffffff;
 color: #ff0000;
 }
 
-nav {
+.navbar {
 display: flex;
 align-items: center;
-gap: 12px;
+gap: 15px;
 }
 
-nav a {
+.nav-links {
+display: flex;
+align-items: center;
+gap: 18px;
+}
+
+.nav-links a {
 color: #ffffff;
 text-decoration: none;
 font-weight: 600;
@@ -67,20 +74,30 @@ font-size: 0.9rem;
 transition: color 0.3s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
 color: #ff0000;
 }
 
 .nav-social-ig {
-color: #ff0000;
+color: #ff0000 !important;
 }
 
-/* Botón Carrito en Navbar */
+/* Botón de las 3 Rayitas (Oculto en PC por defecto) */
+.menu-toggle {
+display: none;
+background: none;
+border: none;
+color: #ffffff;
+font-size: 1.5rem;
+cursor: pointer;
+padding: 4px;
+}
+
 .cart-btn {
 background: #ff0000;
 color: #ffffff;
 border: none;
-padding: 6px 12px;
+padding: 6px 14px;
 border-radius: 20px;
 font-size: 0.9rem;
 font-weight: bold;
@@ -169,14 +186,59 @@ font-weight: bold;
 font-size: 1rem;
 }
 
-/* Grid de Productos */
+/* Barra de Confianza */
+.trust-badges {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 25px;
+flex-wrap: wrap;
+padding: 20px 5%;
+background: #0a0a0a;
+border-top: 1px solid #222;
+border-bottom: 1px solid #222;
+}
+
+.badge-item {
+display: flex;
+align-items: center;
+gap: 10px;
+color: #dddddd;
+font-size: 0.9rem;
+font-weight: 600;
+}
+
+.badge-item i {
+color: #ff0000;
+font-size: 1.2rem;
+}
+
+/* Catálogo y Secciones */
+.catalogo-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 30px 5%;
+}
+
+.categoria-section {
+margin-bottom: 45px;
+}
+
+.titulo-categoria {
+font-size: 1.4rem;
+font-weight: 900;
+color: #ffffff;
+border-left: 4px solid #ff0000;
+padding-left: 12px;
+margin-bottom: 20px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
 .grid-productos {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 gap: 25px;
-padding: 40px 5%;
-max-width: 1200px;
-margin: 0 auto;
 }
 
 .card-producto {
@@ -184,18 +246,46 @@ background-color: #111111;
 border-radius: 18px;
 overflow: hidden;
 border: 1px solid #222222;
+transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-producto:hover {
+transform: translateY(-6px);
+border-color: #ff0000;
+box-shadow: 0 0 20px rgba(255, 0, 0, 0.35);
 }
 
 .img-container {
 width: 100%;
 height: 280px;
 overflow: hidden;
+position: relative;
 }
 
 .img-container img {
 width: 100%;
 height: 100%;
 object-fit: cover;
+}
+
+.product-tag {
+position: absolute;
+top: 12px;
+left: 12px;
+background: #ff0000;
+color: #ffffff;
+font-size: 0.75rem;
+font-weight: 800;
+padding: 5px 10px;
+border-radius: 15px;
+z-index: 5;
+letter-spacing: 0.5px;
+box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.product-tag.tag-blue {
+background: #0066ff;
+box-shadow: 0 0 10px rgba(0, 102, 255, 0.6);
 }
 
 .info-producto {
@@ -345,18 +435,32 @@ text-decoration: none;
 font-weight: 700;
 }
 
-/* Ajustes Responsive Celulares */
-@media (max-width: 480px) {
-header {
-padding: 10px 4%;
+/* Responsivo y Menú Desplegable (3 Rayitas) en Celular */
+@media (max-width: 768px) {
+.menu-toggle {
+display: block;
 }
 
-.logo {
-font-size: 1.2rem;
+.nav-links {
+position: absolute;
+top: 60px;
+left: 0;
+width: 100%;
+background: rgba(10, 10, 10, 0.98);
+flex-direction: column;
+align-items: center;
+padding: 20px 0;
+border-bottom: 2px solid #ff0000;
+display: none; /* Oculto por defecto hasta hacer clic */
 }
 
-nav a {
-display: none; /* Oculta enlaces secundarios en celulares para que no descuadren el carrito */
+.nav-links.active {
+display: flex; /* Se muestra al hacer clic en las 3 rayitas */
+}
+
+.nav-links a {
+padding: 10px 0;
+font-size: 1.1rem;
 }
 
 .hero h1 {
@@ -366,6 +470,13 @@ font-size: 1.5rem;
 .hero-bg-logo-wrapper {
 width: 170px;
 height: 170px;
+}
+
+.trust-badges {
+gap: 12px;
+flex-direction: column;
+align-items: flex-start;
+padding: 15px 8%;
 }
 }
 

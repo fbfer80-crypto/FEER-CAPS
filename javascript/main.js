@@ -157,5 +157,41 @@ mensaje += `💰 *TOTAL A PAGAR: $${total.toFixed(2)}*\n\n(Adjunto captura de pa
 // 3. ABRIR WHATSAPP
 window.open(`https://wa.me/593999226667?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
+// Función para ordenar y volver a pintar las gorras en tu index
+function ordenarGorras(criterio) {
+let gorrasOrdenadas = [...catalogoGorras]; // Copiamos el array para no modificar el original
 
+if (criterio === 'menor-mayor') {
+gorrasOrdenadas.sort((a, b) => a.precio - b.precio);
+} else if (criterio === 'mayor-menor') {
+gorrasOrdenadas.sort((a, b) => b.precio - a.precio);
+}
+
+// Llamas a tu función existente que dibuja los productos en el HTML (cambia 'mostrarProductos' por el nombre de tu función)
+mostrarProductos(gorrasOrdenadas);
+}
+
+// Función para ordenar los productos de cada sección por precio de forma independiente
+function ordenarPorPrecio(seccionId, criterio) {
+const section = document.getElementById(seccionId);
+if (!section) return;
+
+const grid = section.querySelector('.grid-productos');
+const cards = Array.from(grid.querySelectorAll('.card-producto'));
+
+cards.sort((a, b) => {
+const precioA = parseFloat(a.querySelector('.precio').innerText.replace('$', ''));
+const precioB = parseFloat(b.querySelector('.precio').innerText.replace('$', ''));
+
+if (criterio === 'menor-mayor') {
+return precioA - precioB;
+} else if (criterio === 'mayor-menor') {
+return precioB - precioA;
+}
+return 0; // Si no hay criterio seleccionado, se queda como está
+});
+
+// Vuelve a colocar las tarjetas ordenadas dentro de la cuadrícula de esa sección
+cards.forEach(card => grid.appendChild(card));
+}
 

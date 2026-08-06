@@ -634,3 +634,63 @@ filter: brightness(1.5);
 }
 }
 
+/* --- ESTILOS PARA LOS SELECTORES DE ORDENAR POR PRECIO --- */
+.categoria-header-flex {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+margin-bottom: 20px;
+border-left: 4px solid #ff0000;
+padding-left: 12px;
+}
+
+.categoria-header-flex .titulo-categoria {
+margin-bottom: 0;
+border-left: none;
+padding-left: 0;
+}
+
+.filtro-precio-container {
+display: flex;
+align-items: center;
+}
+
+.ordenar-select {
+background-color: #111111;
+color: #ffffff;
+border: 1px solid #ff0000;
+padding: 6px 14px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+cursor: pointer;
+outline: none;
+transition: all 0.3s ease;
+}
+
+.ordenar-select:hover {
+background-color: #ff0000;
+color: #fff;
+box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+.ordenar-select option {
+background-color: #111111;
+color: #ffffff;
+}
+
+@media (max-width: 600px) {
+.categoria-header-flex {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+.filtro-precio-container {
+width: 100%;
+}
+.ordenar-select {
+width: 100%;
+}
+}
+

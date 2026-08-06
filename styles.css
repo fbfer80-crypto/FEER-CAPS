@@ -581,56 +581,56 @@ box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
 }
 }
 
-/* --- RAYOS Y EFECTO ELÉCTRICO DE FONDO DEFINITIVO --- */
+/* --- RAYOS Y ENERGÍA ELÉCTRICA DE FONDO --- */
 
 body {
-background-color: #000000 !important;
 position: relative;
+background-color: #000000;
 }
 
-/* Creamos rayos y destellos dinámicos que cruzan el fondo negro */
-body::after {
+/* Capa de rayos y destellos de alta intensidad */
+body::before {
 content: '';
 position: fixed;
 top: 0;
 left: 0;
-width: 100vw;
-height: 100vh;
-background-image:
-linear-gradient(45deg, rgba(255, 0, 0, 0.12) 25%, transparent 25%),
-linear-gradient(-45deg, rgba(255, 0, 0, 0.12) 25%, transparent 25%),
-linear-gradient(45deg, transparent 75%, rgba(255, 0, 0, 0.12) 75%),
-linear-gradient(-45deg, transparent 75%, rgba(255, 0, 0, 0.12) 75%);
-background-size: 60px 60px;
-background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
-z-index: 1; /* Se sitúa por encima del negro puro pero detrás del contenido */
-pointer-events: none; /* Permite hacer clic en todo sin estorbar */
-opacity: 0.6;
-animation: electricStorm 4s linear infinite;
+width: 100%;
+height: 100%;
+background:
+radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
+radial-gradient(circle at 85% 80%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+radial-gradient(circle at 50% 50%, rgba(255, 50, 50, 0.1) 0%, transparent 60%),
+linear-gradient(135deg, transparent 0%, rgba(255, 0, 0, 0.05) 50%, transparent 100%);
+z-index: -1;
+pointer-events: none;
+animation: electricFlash 2.5s ease-in-out infinite;
 }
 
-/* Animación de pulso eléctrico y tormenta de rayos */
-@keyframes electricStorm {
-0% {
+/* Animación de destellos parpadeantes estilo rayo */
+@keyframes electricFlash {
+0%, 100% {
 opacity: 0.3;
-transform: scale(1);
-filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.5));
+filter: brightness(1);
+}
+20% {
+opacity: 0.9;
+filter: brightness(1.6);
+}
+25% {
+opacity: 0.4;
+filter: brightness(0.9);
+}
+30% {
+opacity: 1;
+filter: brightness(2);
 }
 50% {
-opacity: 0.85;
-transform: scale(1.02);
-filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.9));
+opacity: 0.5;
+filter: brightness(1.1);
 }
-100% {
-opacity: 0.3;
-transform: scale(1);
-filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.5));
+75% {
+opacity: 0.8;
+filter: brightness(1.5);
 }
-}
-
-/* Aseguramos que tus tarjetas y textos queden siempre legibles por encima del efecto */
-header, .hero, .trust-badges, .catalogo-container, footer, .cart-modal {
-position: relative;
-z-index: 2;
 }
 

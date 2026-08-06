@@ -143,8 +143,18 @@ doc.text("¡Gracias por tu compra en FEER CAPS!", 105, y, { align: "center" });
 
 doc.save("Factura_FeerCaps.pdf");
 
-// 2. ABRIR WHATSAPP CON EL MENSAJE
-let mensaje = "Hola! Acabo de generar mi factura en PDF de FEER CAPS. Deseo confirmar mi pedido por un total de $" + total.toFixed(2);
+// 2. CREAR MENSAJE DETALLADO PARA WHATSAPP
+let mensaje = "🔥 *NUEVO PEDIDO - FEER CAPS* 🔥\n\nHola, acabo de generar mi factura. Aquí el detalle de mi pedido:\n\n";
+
+cart.forEach(item => {
+let subtotal = item.price * item.quantity;
+mensaje += `🧢 *${item.name}*\n- Talla: ${item.talla}\n- Cantidad: ${item.quantity}\n- Subtotal: $${subtotal.toFixed(2)}\n\n`;
+});
+
+mensaje += `💰 *TOTAL A PAGAR: $${total.toFixed(2)}*\n\n(Adjunto captura de pantalla para confirmar los modelos exactos).`;
+
+// 3. ABRIR WHATSAPP
 window.open(`https://wa.me/593999226667?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
+
 

@@ -510,3 +510,127 @@ padding: 6px 2px !important;
 font-size: 0.7rem !important;
 }
 }
+/* --- DECORACIÓN EXTRA: DESTELLOS Y BORDE ANIMADO --- */
+
+/* 1. Efecto de Destellos en el fondo del catálogo o tarjetas */
+.card-producto {
+position: relative;
+overflow: hidden;
+}
+
+/* Creamos un destello de luz sutil cruzando la tarjeta */
+.card-producto::after {
+content: '';
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: linear-gradient(
+0deg,
+transparent,
+rgba(255, 0, 0, 0.03),
+transparent
+);
+transform: rotate(45deg);
+pointer-events: none;
+animation: shineGlow 6s linear infinite;
+}
+
+@keyframes shineGlow {
+0% { transform: translateY(-100%) rotate(45deg); }
+100% { transform: translateY(100%) rotate(45deg); }
+}
+
+/* 2. Borde Animado Brillante Estilo Neón */
+@keyframes neonBorderPulse {
+0% {
+border-color: rgba(255, 0, 0, 0.3);
+box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+}
+50% {
+border-color: rgba(255, 0, 0, 0.8);
+box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+100% {
+border-color: rgba(255, 0, 0, 0.3);
+box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+}
+}
+
+/* Aplicamos el borde animado a las tarjetas o al botón principal de WhatsApp */
+.card-producto {
+border: 1px solid rgba(255, 0, 0, 0.3);
+animation: neonBorderPulse 4s ease-in-out infinite;
+}
+
+/* Destello intermitente para el botón del carrito / WhatsApp del hero */
+.pulse-red {
+animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+0% {
+box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+}
+70% {
+box-shadow: 0 0 0 15px rgba(255, 0, 0, 0);
+}
+100% {
+box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+}
+}
+
+/* --- RAYOS Y ENERGÍA ELÉCTRICA DE FONDO --- */
+
+body {
+position: relative;
+background-color: #000000;
+}
+
+/* Capa de rayos y destellos de alta intensidad */
+body::before {
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background:
+radial-gradient(circle at 15% 20%, rgba(255, 0, 0, 0.25) 0%, transparent 35%),
+radial-gradient(circle at 85% 80%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+radial-gradient(circle at 50% 50%, rgba(255, 50, 50, 0.1) 0%, transparent 60%),
+linear-gradient(135deg, transparent 0%, rgba(255, 0, 0, 0.05) 50%, transparent 100%);
+z-index: -1;
+pointer-events: none;
+animation: electricFlash 2.5s ease-in-out infinite;
+}
+
+/* Animación de destellos parpadeantes estilo rayo */
+@keyframes electricFlash {
+0%, 100% {
+opacity: 0.3;
+filter: brightness(1);
+}
+20% {
+opacity: 0.9;
+filter: brightness(1.6);
+}
+25% {
+opacity: 0.4;
+filter: brightness(0.9);
+}
+30% {
+opacity: 1;
+filter: brightness(2);
+}
+50% {
+opacity: 0.5;
+filter: brightness(1.1);
+}
+75% {
+opacity: 0.8;
+filter: brightness(1.5);
+}
+}
+

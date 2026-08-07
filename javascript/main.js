@@ -227,7 +227,18 @@ modal.classList.add('active');
 
 function cerrarZoom() {
 const modal = document.getElementById('imageZoomModal');
+const modalImg = document.getElementById('imgZoomTarget');
+
+// Quitamos primero la clase de zoom para resetear la imagen
+modalImg.classList.remove('zoomed');
+
+// Ocultamos el modal de inmediato para evitar pantallas negras residuales
 modal.classList.remove('active');
+
+// Limpiamos la fuente para liberar memoria al instante
+setTimeout(() => {
+modalImg.src = '';
+}, 200);
 }
 
 // Permitir hacer zoom al hacer clic directamente sobre la foto ampliada

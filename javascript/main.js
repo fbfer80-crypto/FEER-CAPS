@@ -92,7 +92,6 @@ alert("Tu carrito está vacío");
 return;
 }
 
-// 1. GENERAR Y DESCARGAR EL PDF (FACTURA DIGITAL)
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
 
@@ -144,7 +143,6 @@ doc.text("¡Gracias por tu compra en FEER CAPS!", 105, y, { align: "center" });
 
 doc.save("Factura_FeerCaps.pdf");
 
-// 2. CREAR MENSAJE DETALLADO PARA WHATSAPP
 let mensaje = "🔥 *NUEVO PEDIDO - FEER CAPS* 🔥\n\nHola, acabo de generar mi factura. Aquí el detalle de mi pedido:\n\n";
 
 cart.forEach(item => {
@@ -154,24 +152,9 @@ mensaje += `🧢 *${item.name}*\n- Talla: ${item.talla}\n- Cantidad: ${item.quan
 
 mensaje += `💰 *TOTAL A PAGAR: $${total.toFixed(2)}*\n\n(Adjunto captura de pantalla para confirmar los modelos exactos).`;
 
-// 3. ABRIR WHATSAPP
 window.open(`https://wa.me/593999226667?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
-// Función para ordenar y volver a pintar las gorras en tu index
-function ordenarGorras(criterio) {
-let gorrasOrdenadas = [...catalogoGorras]; // Copiamos el array para no modificar el original
 
-if (criterio === 'menor-mayor') {
-gorrasOrdenadas.sort((a, b) => a.precio - b.precio);
-} else if (criterio === 'mayor-menor') {
-gorrasOrdenadas.sort((a, b) => b.precio - a.precio);
-}
-
-// Llamas a tu función existente que dibuja los productos en el HTML (cambia 'mostrarProductos' por el nombre de tu función)
-mostrarProductos(gorrasOrdenadas);
-}
-
-// Función para ordenar los productos de cada sección por precio de forma independiente
 function ordenarPorPrecio(seccionId, criterio) {
 const section = document.getElementById(seccionId);
 if (!section) return;
@@ -188,28 +171,24 @@ return precioA - precioB;
 } else if (criterio === 'mayor-menor') {
 return precioB - precioA;
 }
-return 0; // Si no hay criterio seleccionado, se queda como está
+return 0;
 });
 
-// Vuelve a colocar las tarjetas ordenadas dentro de la cuadrícula de esa sección
 cards.forEach(card => grid.appendChild(card));
 }
 
-// --- SISTEMA DE ZOOM Y MODAL PARA LAS GORRAS ---
-
-// 1. Activar el evento de clic en todas las imágenes de los productos
+// --- SISTEMA DE ZOOM SEGURO PARA MÓVIL Y PC ---
 document.addEventListener("DOMContentLoaded", () => {
 const imagenesProductos = document.querySelectorAll('.card-producto .img-container img');
 
 imagenesProductos.forEach(img => {
 img.style.cursor = 'pointer';
 img.addEventListener('click', (e) => {
-e.stopPropagation();
+e.preventDefault();
 const card = img.closest('.card-producto');
-const titulo = card.querySelector('h3').innerText;
-const src = img.src;
-
-abrirZoom(src, titulo);
+const tituloEl = card ? card.querySelector('h3') : null;
+const titulo = tituloEl ? tituloEl.innerText : 'Gorra Exclusiva';
+abrirZoom(img.src, titulo);
 });
 });
 });
@@ -219,9 +198,11 @@ const modal = document.getElementById('imageZoomModal');
 const modalImg = document.getElementById('imgZoomTarget');
 const modalTitle = document.getElementById('txtZoomTitle');
 
+if (!modal || !modalImg) return;
+
 modalImg.src = src;
-modalTitle.innerText = titulo;
-modalImg.classList.remove('zoomed'); // Reinicia el zoom previo
+if (modalTitle) modalTitle.innerText = titulo;
+modalImg.classList.remove('zoomed');
 modal.classList.add('active');
 }
 
@@ -229,25 +210,21 @@ function cerrarZoom() {
 const modal = document.getElementById('imageZoomModal');
 const modalImg = document.getElementById('imgZoomTarget');
 
-// Quitamos primero la clase de zoom para resetear la imagen
-modalImg.classList.remove('zoomed');
+if (!modal) return;
 
-// Ocultamos el modal de inmediato para evitar pantallas negras residuales
+if (modalImg) modalImg.classList.remove('zoomed');
 modal.classList.remove('active');
 
-// Limpiamos la fuente para liberar memoria al instante
 setTimeout(() => {
-modalImg.src = '';
+if (modalImg) modalImg.src = '';
 }, 200);
 }
 
-// Permitir hacer zoom al hacer clic directamente sobre la foto ampliada
 function alternarZoomImagen() {
 const modalImg = document.getElementById('imgZoomTarget');
-modalImg.classList.toggle('zoomed');
+if (modalImg) modalImg.classList.toggle('zoomed');
 }
 
-// Cerrar si se hace clic fuera del contenido de la imagen
 function cerrarZoomAfuera(event) {
 if (event.target.id === 'imageZoomModal') {
 cerrarZoom();

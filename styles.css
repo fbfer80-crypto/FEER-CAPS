@@ -745,3 +745,14 @@ transition: color 0.3s;
 color: #ff0000;
 }
 
+/* Asegurar que las imágenes de las gorras siempre estén al frente del fondo */
+.card-producto img,
+.card-producto .img-container img {
+position: relative;
+z-index: 2;
+}
+
+.card-producto {
+position: relative;
+z-index: 1;
+}

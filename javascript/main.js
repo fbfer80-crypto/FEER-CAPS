@@ -230,4 +230,12 @@ if (event.target.id === 'imageZoomModal') {
 cerrarZoom();
 }
 }
-
+// Cerrar zoom haciendo clic en el fondo oscuro del modal de forma segura para móviles
+const modalZoom = document.getElementById('imageZoomModal');
+if (modalZoom) {
+modalZoom.addEventListener('click', function(event) {
+if (event.target === this) {
+cerrarZoom();
+}
+});
+}

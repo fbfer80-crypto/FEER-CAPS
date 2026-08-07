@@ -245,7 +245,8 @@ gap: 25px;
 background-color: #111111;
 border-radius: 18px;
 overflow: hidden;
-border: 1px solid #222222;
+border: 1px solid rgba(255, 0, 0, 0.3);
+animation: neonBorderPulse 4s ease-in-out infinite;
 transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -451,11 +452,11 @@ flex-direction: column;
 align-items: center;
 padding: 20px 0;
 border-bottom: 2px solid #ff0000;
-display: none; /* Oculto por defecto hasta hacer clic */
+display: none;
 }
 
 .nav-links.active {
-display: flex; /* Se muestra al hacer clic en las 3 rayitas */
+display: flex;
 }
 
 .nav-links a {
@@ -510,15 +511,9 @@ padding: 6px 2px !important;
 font-size: 0.7rem !important;
 }
 }
+
 /* --- DECORACIÓN EXTRA: DESTELLOS Y BORDE ANIMADO --- */
 
-/* 1. Efecto de Destellos en el fondo del catálogo o tarjetas */
-.card-producto {
-position: relative;
-overflow: hidden;
-}
-
-/* Creamos un destello de luz sutil cruzando la tarjeta */
 .card-producto::after {
 content: '';
 position: absolute;
@@ -542,7 +537,6 @@ animation: shineGlow 6s linear infinite;
 100% { transform: translateY(100%) rotate(45deg); }
 }
 
-/* 2. Borde Animado Brillante Estilo Neón */
 @keyframes neonBorderPulse {
 0% {
 border-color: rgba(255, 0, 0, 0.3);
@@ -558,13 +552,6 @@ box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
 }
 }
 
-/* Aplicamos el borde animado a las tarjetas o al botón principal de WhatsApp */
-.card-producto {
-border: 1px solid rgba(255, 0, 0, 0.3);
-animation: neonBorderPulse 4s ease-in-out infinite;
-}
-
-/* Destello intermitente para el botón del carrito / WhatsApp del hero */
 .pulse-red {
 animation: pulseButton 2s infinite;
 }
@@ -583,12 +570,6 @@ box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
 
 /* --- RAYOS Y ENERGÍA ELÉCTRICA DE FONDO --- */
 
-body {
-position: relative;
-background-color: #000000;
-}
-
-/* Capa de rayos y destellos de alta intensidad */
 body::before {
 content: '';
 position: fixed;
@@ -606,7 +587,6 @@ pointer-events: none;
 animation: electricFlash 2.5s ease-in-out infinite;
 }
 
-/* Animación de destellos parpadeantes estilo rayo */
 @keyframes electricFlash {
 0%, 100% {
 opacity: 0.3;
@@ -693,8 +673,9 @@ width: 100%;
 width: 100%;
 }
 }
+
 /* --- ESTILOS PARA EL MODAL DE ZOOM DE GORRAS --- */
-..zoom-modal {
+.zoom-modal {
 display: none;
 position: fixed;
 z-index: 999;
@@ -704,7 +685,7 @@ width: 100%;
 height: 100%;
 background-color: rgba(0, 0, 0, 0.9);
 backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px); /* Soporte extra para celulares */
+-webkit-backdrop-filter: blur(8px);
 justify-content: center;
 align-items: center;
 padding: 20px;
@@ -736,7 +717,7 @@ cursor: zoom-in;
 }
 
 .zoom-modal-content img.zoomed {
-transform: scale(1.6); /* Nivel de zoom al hacer clic sobre la foto */
+transform: scale(1.6);
 cursor: zoom-out;
 }
 
@@ -763,5 +744,4 @@ transition: color 0.3s;
 .zoom-close-btn:hover {
 color: #ff0000;
 }
-
 

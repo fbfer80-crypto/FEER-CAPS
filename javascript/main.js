@@ -195,3 +195,51 @@ return 0; // Si no hay criterio seleccionado, se queda como está
 cards.forEach(card => grid.appendChild(card));
 }
 
+// --- SISTEMA DE ZOOM Y MODAL PARA LAS GORRAS ---
+
+// 1. Activar el evento de clic en todas las imágenes de los productos
+document.addEventListener("DOMContentLoaded", () => {
+const imagenesProductos = document.querySelectorAll('.card-producto .img-container img');
+
+imagenesProductos.forEach(img => {
+img.style.cursor = 'pointer';
+img.addEventListener('click', (e) => {
+e.stopPropagation();
+const card = img.closest('.card-producto');
+const titulo = card.querySelector('h3').innerText;
+const src = img.src;
+
+abrirZoom(src, titulo);
+});
+});
+});
+
+function abrirZoom(src, titulo) {
+const modal = document.getElementById('imageZoomModal');
+const modalImg = document.getElementById('imgZoomTarget');
+const modalTitle = document.getElementById('txtZoomTitle');
+
+modalImg.src = src;
+modalTitle.innerText = titulo;
+modalImg.classList.remove('zoomed'); // Reinicia el zoom previo
+modal.classList.add('active');
+}
+
+function cerrarZoom() {
+const modal = document.getElementById('imageZoomModal');
+modal.classList.remove('active');
+}
+
+// Permitir hacer zoom al hacer clic directamente sobre la foto ampliada
+function alternarZoomImagen() {
+const modalImg = document.getElementById('imgZoomTarget');
+modalImg.classList.toggle('zoomed');
+}
+
+// Cerrar si se hace clic fuera del contenido de la imagen
+function cerrarZoomAfuera(event) {
+if (event.target.id === 'imageZoomModal') {
+cerrarZoom();
+}
+}
+

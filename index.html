@@ -709,6 +709,16 @@
 
 <!-- Scripts -->
 <script src="javascript/main.js"></script>
+
+<!-- Modal de Zoom para Imágenes de Gorras -->
+<div id="imageZoomModal" class="zoom-modal" onclick="cerrarZoomAfuera(event)">
+<div class="zoom-modal-content">
+<button class="zoom-close-btn" onclick="cerrarZoom()">&times;</button>
+<img id="imgZoomTarget" src="" alt="Zoom Gorra" onclick="alternarZoomImagen()">
+<p id="txtZoomTitle" class="zoom-modal-title"></p>
+</div>
+</div>
+
 </body>
 </html>
 

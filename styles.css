@@ -7,16 +7,15 @@ scroll-behavior: smooth;
 }
 
 @keyframes moverFondoRayo {
-0% { filter: brightness(0.9); }
-50% { filter: brightness(1.2); }
-100% { filter: brightness(0.9); }
+0% { background-position: 0% 0%; }
+50% { background-position: 100% 100%; }
+100% { background-position: 0% 0%; }
 }
 
 body {
-background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('img/fondo-rayos.jpg') no-repeat center center fixed !important;
-background-size: cover !important;
-background-position: center !important;
-animation: moverFondoRayo 20s ease infinite alternate !important;
+background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), url('img/fondo-rayos.jpg') !important;
+background-size: 200% 200% !important;
+animation: moverFondoRayo 15s ease infinite !important;
 color: #ffffff !important;
 overflow-x: hidden;
 }

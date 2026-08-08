@@ -228,25 +228,44 @@ function ordenarPorPrecio(seccionId, criterio) {
 }
 
 function abrirZoom(imgElement) {
-    const modalZoom = document.getElementById('imageZoomModal');
-    const imgTarget = document.getElementById('imgZoomTarget');
-    const txtTitle = document.getElementById('txtZoomTitle');
+const card = imgElement.closest('.card-producto');
+if (!card) return;
 
-    const card = imgElement.closest('.card-producto');
-    const tituloProducto = card.querySelector('h3').innerText;
+// Si ya está ampliada, la cerramos
+if (card.classList.contains('zoom-activo')) {
+cerrarZoomActivo(card);
+return;
+}
 
-    imgTarget.src = imgElement.src;
-    txtTitle.innerText = tituloProducto;
-    modalZoom.classList.add('active');
+// Cerrar cualquier otra tarjeta abierta previamente
+document.querySelectorAll('.card-producto.zoom-activo').forEach(c => cerrarZoomActivo(c));
+
+// Activar modo expandido en esta tarjeta
+card.classList.add('zoom-activo');
+
+// Crear un botón de cerrar flotante dentro de la tarjeta
+const cerrarBtn = document.createElement('button');
+cerrarBtn.className = 'btn-cerrar-zoom-local';
+cerrarBtn.innerHTML = '&times;';
+cerrarBtn.onclick = (e) => {
+e.stopPropagation();
+cerrarZoomActivo(card);
+};
+card.appendChild(cerrarBtn);
+}
+
+function cerrarZoomActivo(card) {
+card.classList.remove('zoom-activo');
+const btn = card.querySelector('.btn-cerrar-zoom-local');
+if (btn) btn.remove();
 }
 
 function cerrarZoom() {
-    const modalZoom = document.getElementById('imageZoomModal');
-    modalZoom.classList.remove('active');
+document.querySelectorAll('.card-producto.zoom-activo').forEach(c => cerrarZoomActivo(c));
 }
 
 window.addEventListener('click', function(event) {
-    const modalCarrito = document.getElementById('cart-modal');
+    const modalCarrito = document. getElementById('cart-modal');
     const modalZoom = document.getElementById('imageZoomModal');
 
     if (event.target === modalCarrito) {

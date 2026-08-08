@@ -670,29 +670,6 @@
 
 </main>
 
-<!-- Modal del Carrito -->
-<div id="cart-modal" class="cart-modal">
-<div class="cart-content">
-<div class="cart-header">
-<h2><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h2>
-<span class="close-cart" onclick="toggleCart()">&times;</span>
-</div>
-<div id="cart-items" class="cart-items">
-<p class="empty-msg">Tu carrito está vacío</p>
-</div>
-<div class="cart-footer">
-<div class="total-box">
-<span>Total:</span>
-<span id="cart-total">$0.00</span>
-</div>
-<p style="font-size: 0.75rem; color: #aaa; text-align: center; margin: 8px 0;">📸 No olvides tomar captura de pantalla a tu carrito para ver tus modelos.</p>
-<button class="btn-checkout" onclick="sendOrderWhatsApp()">
-<i class="fa-brands fa-whatsapp"></i> Pedir Carrito por WhatsApp
-</button>
-</div>
-</div>
-</div>
-
 <!-- Footer -->
 <footer>
 <p>© 2026 FEER CAPS - Guayaquil, Ecuador</p>
@@ -712,6 +689,29 @@
 <button class="zoom-close-btn" onclick="cerrarZoom()">&times;</button>
 <img id="imgZoomTarget" src="" alt="Zoom Gorra">
 <p id="txtZoomTitle" class="zoom-modal-title"></p>
+</div>
+</div>
+
+<!-- MODAL DEL CARRITO (Colocado siempre al final para abrirse fijo y centrado) -->
+<div id="cart-modal" class="cart-modal">
+<div class="cart-content">
+<div class="cart-header">
+<h2><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h2>
+<span class="close-cart" onclick="toggleCart()">&times;</span>
+</div>
+<div id="cart-items" class="cart-items">
+<p class="empty-msg">Tu carrito está vacío</p>
+</div>
+<div class="cart-footer">
+<div class="total-box">
+<span>Total:</span>
+<span id="cart-total">$0.00</span>
+</div>
+<p style="font-size: 0.75rem; color: #aaa; text-align: center; margin: 8px 0;">📸 No olvides tomar captura de pantalla a tu carrito para ver tus modelos.</p>
+<button class="btn-checkout" onclick="sendOrderWhatsApp()">
+<i class="fa-brands fa-whatsapp"></i> Pedir Carrito por WhatsApp
+</button>
+</div>
 </div>
 </div>
 

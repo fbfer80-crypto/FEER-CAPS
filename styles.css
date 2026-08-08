@@ -622,26 +622,22 @@ padding: 6px 2px !important;
 font-size: 0.7rem !important;
 }
 }
-/* Estilo para cuando la gorra se expande justo en su lugar */
+/* Tarjeta expandida perfectamente centrada en pantalla */
 .card-producto.zoom-activo {
 position: fixed !important;
 top: 50% !important;
 left: 50% !important;
-transform: translate(-50%, -50%) scale(1.05) !important;
-width: 90% !important;
-max-width: 400px !important;
+transform: translate(-50%, -50%) scale(1) !important;
+width: 88% !important;
+max-width: 360px !important;
 z-index: 2147483647 !important;
-box-shadow: 0 0 50px rgba(255, 0, 0, 0.8) !important;
-background: rgba(10, 10, 10, 0.98) !important;
-transition: all 0.3s ease;
+box-shadow: 0 0 60px rgba(255, 0, 0, 0.9) !important;
+background: rgba(10, 10, 10, 0.99) !important;
+border: 2px solid #ff0000 !important;
 }
 
 .card-producto.zoom-activo .img-container {
-height: 320px !important;
-}
-
-.card-producto.zoom-activo img {
-transform: scale(1.1) !important;
+height: 280px !important;
 }
 
 /* Botón X dentro de la tarjeta expandida */
